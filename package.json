@@ -1,0 +1,30 @@
+{
+  "name": "restautant-roulette",
+  "version": "1.0.0",
+  "description": "An app to randomly select a nearby restaurant.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alvinscheng/restautant-roulette.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alvinscheng/restautant-roulette/issues"
+  },
+  "homepage": "https://github.com/alvinscheng/restautant-roulette#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}
