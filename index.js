@@ -13,22 +13,22 @@ const app = express()
 // app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
-const searchRequest = {
-  term:'Four Barrel Coffee',
-  location: 'san francisco, ca'
-};
+app.get('/restaurant', (req, res) => {
+  const searchRequest = {
+    term:'restaurant',
+    location: 'san clemente, ca'
+  }
+  yelp.accessToken(clientId, clientSecret).then(response => {
+    const client = yelp.client(response.jsonBody.access_token)
 
-yelp.accessToken(clientId, clientSecret).then(response => {
-  const client = yelp.client(response.jsonBody.access_token);
-
-  client.search(searchRequest).then(response => {
-    const firstResult = response.jsonBody.businesses[0];
-    const prettyJson = JSON.stringify(firstResult, null, 4);
-    console.log(prettyJson);
-  });
-}).catch(e => {
-  console.log(e);
-});
+    client.search(searchRequest).then(response => {
+      const firstResult = response.jsonBody.businesses[0]
+      res.json(firstResult)
+    })
+  }).catch(e => {
+    res.sendStatus(404)
+  })
+})
 
 const port = process.env.PORT || 3000
 app.listen(port, () => console.log('Listening on ' + port))
