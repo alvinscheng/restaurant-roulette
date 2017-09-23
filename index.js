@@ -10,7 +10,7 @@ const clientSecret = process.env.CLIENT_SECRET
 
 const app = express()
 
-// app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
 app.get('/restaurant', (req, res) => {
