@@ -22,8 +22,8 @@ app.get('/restaurant', (req, res) => {
     const client = yelp.client(response.jsonBody.access_token)
 
     client.search(searchRequest).then(response => {
-      const firstResult = response.jsonBody.businesses[0]
-      res.json(firstResult)
+      const random = Math.floor(Math.random() * response.jsonBody.businesses.length)
+      res.json(response.jsonBody.businesses[random])
     })
   }).catch(e => {
     res.sendStatus(404)
