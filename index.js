@@ -14,21 +14,24 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
 app.get('/restaurant', (req, res) => {
-  console.log(req.query)
-  // const searchRequest = {
-  //   term:'restaurant',
-  //   location: 'san clemente, ca'
-  // }
-  // yelp.accessToken(clientId, clientSecret).then(response => {
-  //   const client = yelp.client(response.jsonBody.access_token)
-  //
-  //   client.search(searchRequest).then(response => {
-  //     const random = Math.floor(Math.random() * response.jsonBody.businesses.length)
-  //     res.json(response.jsonBody.businesses[random])
-  //   })
-  // }).catch(e => {
-  //   res.sendStatus(404)
-  // })
+  const { latitude, longitude } = req.query
+  const searchRequest = {
+    term: 'food',
+    location: 'San Clemente, ca',
+    limit: 50,
+    latitude,
+    longitude
+  }
+  yelp.accessToken(clientId, clientSecret).then(response => {
+    const client = yelp.client(response.jsonBody.access_token)
+
+    client.search(searchRequest).then(response => {
+      const random = Math.floor(Math.random() * response.jsonBody.businesses.length)
+      res.json(response.jsonBody.businesses[random])
+    })
+  }).catch(e => {
+    res.sendStatus(404)
+  })
 })
 
 const port = process.env.PORT || 3000
