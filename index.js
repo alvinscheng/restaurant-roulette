@@ -17,7 +17,6 @@ app.get('/restaurant', (req, res) => {
   const { latitude, longitude } = req.query
   const searchRequest = {
     term: 'food',
-    location: 'San Clemente, ca',
     limit: 50,
     latitude,
     longitude

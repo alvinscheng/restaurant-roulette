@@ -6,7 +6,6 @@ $restaurantButton.addEventListener('click', () => {
     const { latitude, longitude } = position.coords
     fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude, { method: 'GET' }).then(response => response.json())
       .then(restaurant => {
-        console.log(restaurant)
         $restaurant.appendChild(renderRestaurant(restaurant))
       })
   })
