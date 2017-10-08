@@ -6,9 +6,6 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
-/* #spinner {
-  color: #7777cc
-} */
 .hidden {
   display: none;
 }
@@ -28,4 +25,8 @@
 }
 .wobble-fix {
   filter: blur(0); 
+}
+.r-image {
+  margin-top: 20px;
+  height: 200px;
 }
