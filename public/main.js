@@ -1,28 +1,22 @@
 const $restaurantButton = document.querySelector('#restaurant-btn')
 const $restaurant = document.querySelector('#restaurant')
 const $r_image = document.querySelector('#r-image')
+const $top_image = document.querySelector('#top-image')
+const $top_anchor = document.querySelector('#top-anchor')
 const div = document.querySelector('#spinner');
 
 const startSpin = () => {
   $restaurant.innerHTML = "";
-  $r_image.innerHTML = "";
+
   const spinner = document.querySelector('#spinner>i');
   $restaurantButton.setAttribute('disabled', '');
   div.classList.toggle("hidden");
   spinner.classList.add("fa-spin");
-  // setTimeout(function() {
-  //   console.log('timeout')
-  //   showResult();
-  // }, 1000)
 }
 const showResult = (restaurant) => {
   div.classList.toggle("hidden");
   $restaurantButton.removeAttribute('disabled');
   $restaurantButton.textContent = "Not satisfied? Try again!";
-  // const restaurant = {
-  //   name: "TEST",
-  //   url: "/a/b/c"
-  // }
   $restaurant.appendChild(renderRestaurant(restaurant))
 }
 
@@ -53,13 +47,10 @@ function renderRestaurant(restaurant) {
   $name.setAttribute('href', url)
   $name.classList.add('result')
   $restaurant.appendChild($name)
+  $top_anchor.setAttribute('href', url)
+  
+  $top_image.setAttribute('src', image_url)
+  $top_image.classList.add('replaced')
 
-  const $img = document.createElement('img')
-  $img.classList.add('r-image')
-  $img.classList.add('img-fluid')
-  $img.classList.add('mx-auto')
-  $img.classList.add('d-block')
-  $img.setAttribute('src', image_url)
-  $r_image.appendChild($img)
   return $restaurant
 }

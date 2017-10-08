@@ -28,5 +28,9 @@
 }
 .r-image {
   margin-top: 20px;
+  margin-bottom: 20px;
   height: 200px;
+}
+.replaced {
+  height: 385px;
 }

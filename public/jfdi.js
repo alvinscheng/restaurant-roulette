@@ -1,5 +1,3 @@
-
-
 const $restaurantButton = document.querySelector('#restaurant-btn')
 const $restaurant = document.querySelector('#restaurant')
 const div = document.querySelector('#spinner');
@@ -10,19 +8,11 @@ const startSpin = () => {
   $restaurantButton.setAttribute('disabled', '');
   div.classList.toggle("hidden");
   spinner.classList.add("fa-spin");
-  // setTimeout(function() {
-  //   console.log('timeout')
-  //   showResult();
-  // }, 1000)
 }
 const showResult = (restaurant) => {
   div.classList.toggle("hidden");
   $restaurantButton.removeAttribute('disabled');
   $restaurantButton.textContent = "Not satisfied? Try again!";
-  // const restaurant = {
-  //   name: "TEST",
-  //   url: "/a/b/c"
-  // }
   $restaurant.appendChild(renderRestaurant(restaurant))
 }
 
