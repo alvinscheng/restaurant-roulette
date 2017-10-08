@@ -14,10 +14,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
 app.get('/restaurant', (req, res) => {
-  const { latitude, longitude } = req.query
+  const { latitude, longitude, limit } = req.query
   const searchRequest = {
     term: 'food',
-    limit: 50,
+    limit,
     latitude,
     longitude
   }

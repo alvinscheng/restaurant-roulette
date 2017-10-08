@@ -1,6 +1,31 @@
 .title {
+  margin: 20px 0;
   font-family: 'Slabo 27px', serif;
 }
-.hero {
-  margin: 10px 0;
+.hero, .result {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+/* #spinner {
+  color: #7777cc
+} */
+.hidden {
+  display: none;
+}
+.spacer {
+  height: 45px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.result, #result {
+  color: #007bff;
+  font-family: 'Slabo 27px', serif;
+  font-size: 2em;
+}
+.result:hover {
+  color: #006aaa;
+  text-decoration: none;
+}
+.wobble-fix {
+  filter: blur(0); 
 }

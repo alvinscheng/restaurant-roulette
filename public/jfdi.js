@@ -1,3 +1,5 @@
+
+
 const $restaurantButton = document.querySelector('#restaurant-btn')
 const $restaurant = document.querySelector('#restaurant')
 const div = document.querySelector('#spinner');
@@ -44,7 +46,6 @@ $restaurantButton.addEventListener('click', () => {
 function renderRestaurant(restaurant) {
   const { name, url } = restaurant
   const $restaurant = document.createElement('div')
-
   const $name = document.createElement('a')
   $name.textContent = name
   $name.setAttribute('href', url)
@@ -52,3 +53,8 @@ function renderRestaurant(restaurant) {
   $restaurant.appendChild($name)
   return $restaurant
 }
+
+
+window.onload = function() {
+  $restaurantButton.click();
+};
