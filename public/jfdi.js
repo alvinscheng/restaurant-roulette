@@ -1,13 +1,9 @@
 const $restaurantButton = document.querySelector('#restaurant-btn')
 const $restaurant = document.querySelector('#restaurant')
-const $r_image = document.querySelector('#r-image')
-const $top_image = document.querySelector('#top-image')
-const $top_anchor = document.querySelector('#top-anchor')
 const div = document.querySelector('#spinner');
 
 const startSpin = () => {
   $restaurant.innerHTML = "";
-
   const spinner = document.querySelector('#spinner>i');
   $restaurantButton.setAttribute('disabled', '');
   div.classList.toggle("hidden");
@@ -38,19 +34,17 @@ $restaurantButton.addEventListener('click', () => {
 })
 
 function renderRestaurant(restaurant) {
-  const { name, url, image_url } = restaurant
+  const { name, url } = restaurant
   const $restaurant = document.createElement('div')
-
   const $name = document.createElement('a')
-  
   $name.textContent = name
   $name.setAttribute('href', url)
   $name.classList.add('result')
   $restaurant.appendChild($name)
-  $top_anchor.setAttribute('href', url)
-  
-  $top_image.setAttribute('src', image_url)
-  $top_image.classList.add('replaced')
-
   return $restaurant
 }
+
+
+window.onload = function() {
+  $restaurantButton.click();
+};
