@@ -45,9 +45,11 @@ function renderRestaurant(restaurant) {
 
   $name.textContent = name
   $name.setAttribute('href', url)
+  $name.setAttribute('target', '_blank')
   $name.classList.add('result')
   $restaurant.appendChild($name)
   $top_anchor.setAttribute('href', url)
+  $top_anchor.setAttribute('target', '_blank')
 
   $top_image.setAttribute('src', image_url)
   $top_image.classList.add('replaced')
