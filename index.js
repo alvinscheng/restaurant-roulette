@@ -1,4 +1,3 @@
-
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
@@ -16,11 +15,12 @@ app.use(bodyParser.json())
 app.get('/restaurant', (req, res) => {
   const { latitude, longitude, limit } = req.query
   const searchRequest = {
-    term: 'food',
     limit,
     latitude,
     longitude
   }
+  searchRequest.term = (req.query.mode === 'party') ? 'beer' : 'food'
+
   yelp.accessToken(clientId, clientSecret).then(response => {
     const client = yelp.client(response.jsonBody.access_token)
 

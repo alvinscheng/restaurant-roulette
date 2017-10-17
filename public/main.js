@@ -1,4 +1,5 @@
 const $restaurantButton = document.querySelector('#restaurant-btn')
+const $secretButton = document.querySelector('#secret-btn')
 const $restaurant = document.querySelector('#restaurant')
 const $r_image = document.querySelector('#r-image')
 const $top_image = document.querySelector('#top-image')
@@ -26,6 +27,23 @@ $restaurantButton.addEventListener('click', () => {
     const { latitude, longitude } = position.coords
     const limit = 50
     fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + '&limit=' + limit, { method: 'GET' }).then(response => response.json())
+      .then(restaurant => {
+        showResult(restaurant);
+      })
+      .catch((e) => {
+        showResult({
+          name: e, url: 'a/b'
+        })
+      })
+  })
+})
+
+$secretButton.addEventListener('click', () => {
+  startSpin();
+  navigator.geolocation.getCurrentPosition(position => {
+    const { latitude, longitude } = position.coords
+    const limit = 50
+    fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + '&limit=' + limit + '&mode=party', { method: 'GET' }).then(response => response.json())
       .then(restaurant => {
         showResult(restaurant);
       })
