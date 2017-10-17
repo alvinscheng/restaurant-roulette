@@ -24,7 +24,7 @@ $restaurantButton.addEventListener('click', () => {
   startSpin();
   navigator.geolocation.getCurrentPosition(position => {
     const { latitude, longitude } = position.coords
-    const limit = 15
+    const limit = 50
     fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + '&limit=' + limit, { method: 'GET' }).then(response => response.json())
       .then(restaurant => {
         showResult(restaurant);
@@ -42,13 +42,13 @@ function renderRestaurant(restaurant) {
   const $restaurant = document.createElement('div')
 
   const $name = document.createElement('a')
-  
+
   $name.textContent = name
   $name.setAttribute('href', url)
   $name.classList.add('result')
   $restaurant.appendChild($name)
   $top_anchor.setAttribute('href', url)
-  
+
   $top_image.setAttribute('src', image_url)
   $top_image.classList.add('replaced')
 

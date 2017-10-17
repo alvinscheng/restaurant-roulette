@@ -20,7 +20,7 @@ $restaurantButton.addEventListener('click', () => {
   startSpin();
   navigator.geolocation.getCurrentPosition(position => {
     const { latitude, longitude } = position.coords
-    const limit = 15
+    const limit = 30
     fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + '&limit=' + limit, { method: 'GET' }).then(response => response.json())
       .then(restaurant => {
         showResult(restaurant);
