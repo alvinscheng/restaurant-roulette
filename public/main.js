@@ -1,4 +1,5 @@
 const $restaurantButton = document.querySelector('#restaurant-btn')
+const $secretButton = document.querySelector('#secret-btn')
 const $restaurant = document.querySelector('#restaurant')
 const $r_image = document.querySelector('#r-image')
 const $top_image = document.querySelector('#top-image')
@@ -21,11 +22,22 @@ const showResult = (restaurant) => {
 }
 
 $restaurantButton.addEventListener('click', () => {
-  startSpin();
+  getRestaurantByPosition({ limit: 50 })
+})
+
+$secretButton.addEventListener('click', () => {
+  const options = {
+    limit: 20,
+    mode: 'party'
+  }
+  getRestaurantByPosition(options)
+})
+
+function getRestaurantByPosition(options) {
+  startSpin()
   navigator.geolocation.getCurrentPosition(position => {
     const { latitude, longitude } = position.coords
-    const limit = 50
-    fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + '&limit=' + limit, { method: 'GET' }).then(response => response.json())
+    fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + toQueryString(options), { method: 'GET' }).then(response => response.json())
       .then(restaurant => {
         showResult(restaurant);
       })
@@ -35,7 +47,15 @@ $restaurantButton.addEventListener('click', () => {
         })
       })
   })
-})
+}
+
+function toQueryString(options) {
+  let query = ''
+  for (let key in options) {
+    query += '&' + key + '=' + options[key]
+  }
+  return query
+}
 
 function renderRestaurant(restaurant) {
   const { name, url, image_url } = restaurant
