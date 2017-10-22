@@ -10964,7 +10964,7 @@ module.exports = function normalizeComponent (
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(13);
 
 
 
@@ -11571,7 +11571,37 @@ if (false) {
 }
 
 /***/ }),
-/* 13 */,
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__getters__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__actions__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__mutations__ = __webpack_require__(17);
+
+
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+const state = {
+  restaurant: {}
+};
+
+const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state,
+  getters: __WEBPACK_IMPORTED_MODULE_2__getters__,
+  actions: __WEBPACK_IMPORTED_MODULE_3__actions__,
+  mutations: __WEBPACK_IMPORTED_MODULE_4__mutations__
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (store);
+
+/***/ }),
 /* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12522,35 +12552,33 @@ var index_esm = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const restaurant = state => state.restaurant;
+/* harmony export (immutable) */ __webpack_exports__["restaurant"] = restaurant;
 
 
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const updateRestaurant = ({ commit }, payload) => commit('UPDATE_RESTAURANT', payload);
+/* harmony export (immutable) */ __webpack_exports__["updateRestaurant"] = updateRestaurant;
 
-const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: {
-    restaurant: {}
-  },
-  mutations: {
-    UPDATE_RESTAURANT(state, payload) {
-      console.log(payload);
-      // state.restaurant = payload.restaurant
-    }
-  },
-  actions: {
-    updateRestaurant({ commit }, payload) {
-      console.log(commit);
-      commit(UPDATE_RESTAURANT, payload);
-    }
-  },
-  getters: {
-    restaurant: state => state.restaurant
-  }
-});
 
-/* harmony default export */ __webpack_exports__["a"] = (store);
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+const UPDATE_RESTAURANT = (state, payload) => {
+  state.restaurant = Object.assign({}, payload.restaurant);
+  console.log(state);
+};
+/* harmony export (immutable) */ __webpack_exports__["UPDATE_RESTAURANT"] = UPDATE_RESTAURANT;
+
 
 /***/ })
 /******/ ]);

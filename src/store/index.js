@@ -1,27 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as getters from './getters'
+import * as actions from './actions'
+import * as mutations from './mutations'
 
 Vue.use(Vuex)
 
+const state = {
+  restaurant: {}
+}
+
 const store = new Vuex.Store({
-  state: {
-    restaurant: {}
-  },
-  mutations: {
-    UPDATE_RESTAURANT(state, payload) {
-      console.log(payload)
-      // state.restaurant = payload.restaurant
-    }
-  },
-  actions: {
-    updateRestaurant({commit}, payload){
-      console.log(commit)
-      commit(UPDATE_RESTAURANT, payload)
-    }
-  },
-  getters: {
-    restaurant: state => state.restaurant
-  }
+  state,
+  getters,
+  actions,
+  mutations
 })
 
 export default store
