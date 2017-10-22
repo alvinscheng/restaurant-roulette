@@ -26,6 +26,7 @@ export default {
         const { latitude, longitude } = position.coords
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
+            this.$store.dispatch('updateRestaurant', { restaurant })
             showResult(restaurant);
           })
           .catch((e) => {
@@ -62,28 +63,7 @@ const showResult = (restaurant) => {
   // div.classList.toggle("hidden");
   // $restaurantButton.removeAttribute('disabled');
   // $restaurantButton.textContent = "Not satisfied? Try again!";
-  renderRestaurant(restaurant)
-}
-
-function renderRestaurant(restaurant) {
-  console.log(restaurant)
-  // const { name, url, image_url } = restaurant
-  // const $restaurant = document.createElement('div')
-  //
-  // const $name = document.createElement('a')
-  //
-  // $name.textContent = name
-  // $name.setAttribute('href', url)
-  // $name.setAttribute('target', '_blank')
-  // $name.classList.add('result')
-  // $restaurant.appendChild($name)
-  // $top_anchor.setAttribute('href', url)
-  // $top_anchor.setAttribute('target', '_blank')
-  //
-  // $top_image.setAttribute('src', image_url)
-  // $top_image.classList.add('replaced')
-  //
-  // return $restaurant
+  // console.log(restaurant)
 }
 
 </script>

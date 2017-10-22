@@ -10964,14 +10964,14 @@ module.exports = function normalizeComponent (
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__App_vue__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_store__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store__ = __webpack_require__(15);
 
 
 
 
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
   el: '#app',
-  store: __WEBPACK_IMPORTED_MODULE_2__store_store__["a" /* default */],
+  store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */],
   render: h => h(__WEBPACK_IMPORTED_MODULE_1__App_vue__["a" /* default */])
 });
 
@@ -11311,6 +11311,7 @@ if (false) {(function () {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords;
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json()).then(restaurant => {
+          this.$store.dispatch('updateRestaurant', { restaurant });
           showResult(restaurant);
         }).catch(e => {
           showResult({
@@ -11346,29 +11347,8 @@ const showResult = restaurant => {
   // div.classList.toggle("hidden");
   // $restaurantButton.removeAttribute('disabled');
   // $restaurantButton.textContent = "Not satisfied? Try again!";
-  renderRestaurant(restaurant);
+  // console.log(restaurant)
 };
-
-function renderRestaurant(restaurant) {
-  console.log(restaurant);
-  // const { name, url, image_url } = restaurant
-  // const $restaurant = document.createElement('div')
-  //
-  // const $name = document.createElement('a')
-  //
-  // $name.textContent = name
-  // $name.setAttribute('href', url)
-  // $name.setAttribute('target', '_blank')
-  // $name.classList.add('result')
-  // $restaurant.appendChild($name)
-  // $top_anchor.setAttribute('href', url)
-  // $top_anchor.setAttribute('target', '_blank')
-  //
-  // $top_image.setAttribute('src', image_url)
-  // $top_image.classList.add('replaced')
-  //
-  // return $restaurant
-}
 
 /***/ }),
 /* 9 */
@@ -11447,9 +11427,17 @@ if (false) {(function () {
 //
 
 /* harmony default export */ __webpack_exports__["a"] = ({
+  updated() {
+    console.log(this.restaurant);
+  },
   props: {
     getRestaurantByPosition: {
       type: Function
+    }
+  },
+  computed: {
+    restaurant() {
+      return this.store.getters.restaurant;
     }
   }
 });
@@ -11583,34 +11571,7 @@ if (false) {
 }
 
 /***/ }),
-/* 13 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
-
-/* harmony default export */ __webpack_exports__["a"] = (new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: {
-    restaurant: {}
-  },
-  mutations: {
-    UPDATE_RESTAURANT(state) {
-      state.restaurant = Object.assign({}, state.newRestaurant);
-    }
-  },
-  actions: {
-    updateRestaurant({ commit }) {
-      commit(UPDATE_RESTAURANT);
-    }
-  }
-}));
-
-/***/ }),
+/* 13 */,
 /* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -12555,6 +12516,41 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(14);
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: {
+    restaurant: {}
+  },
+  mutations: {
+    UPDATE_RESTAURANT(state, payload) {
+      console.log(payload);
+      // state.restaurant = payload.restaurant
+    }
+  },
+  actions: {
+    updateRestaurant({ commit }, payload) {
+      console.log(commit);
+      commit(UPDATE_RESTAURANT, payload);
+    }
+  },
+  getters: {
+    restaurant: state => state.restaurant
+  }
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (store);
 
 /***/ })
 /******/ ]);

@@ -19,9 +19,17 @@
 
 <script>
 export default {
+  updated(){
+    console.log(this.restaurant)
+  },
   props: {
     getRestaurantByPosition: {
       type: Function
+    }
+  },
+  computed: {
+    restaurant() {
+      return this.store.getters.restaurant
     }
   }
 }
