@@ -4,32 +4,33 @@
       <h1>Restaurant Roulette!</h1>
     </div>
     <Restaurant :get-restaurant-by-position="getRestaurantByPosition"></Restaurant>
-    <div class="text-center">
-      <button class="btn btn-outline-dark" @click="() => getRestaurantByPosition({ limit: 50 })">
-        We'll tell you where to eat!
-      </button>
-    </div>
+    <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
   </div>
 </template>
 
 <script>
 import Restaurant from './components/Restaurant.vue'
+import MainButton from './components/MainButton.vue'
 
 export default {
   components: {
-    Restaurant
+    Restaurant,
+    MainButton
   },
   methods: {
     getRestaurantByPosition(options) {
-      // startSpin()
+      const { startSpin, stopSpin } = spinnerActions()
+      startSpin()
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
-            console.log(restaurant)
+            stopSpin()
+            this.$store.dispatch('loadRestaurant')
             this.$store.dispatch('updateRestaurant', { restaurant })
           })
           .catch((e) => {
+            this.$store.dispatch('loadRestaurant')
             this.$store.dispatch('updateRestaurant', {
               restaurant: { name: e, url: 'a/b' }
             })
@@ -46,19 +47,23 @@ export default {
   }
 }
 
+const spinnerActions = () => {
+  const $restaurantButton = document.querySelector('#restaurant-btn')
+  const $spinner = document.querySelector('#spinner')
+  const spinner = document.querySelector('#spinner>i')
 
-const startSpin = () => {
-  $restaurant.innerHTML = "";
-
-  const spinner = document.querySelector('#spinner>i');
-  $restaurantButton.setAttribute('disabled', '');
-  div.classList.toggle("hidden");
-  spinner.classList.add("fa-spin");
-}
-const showResult = (restaurant) => {
-  // div.classList.toggle("hidden");
-  // $restaurantButton.removeAttribute('disabled');
-  // $restaurantButton.textContent = "Not satisfied? Try again!";
+  return {
+    startSpin() {
+      // $restaurant.innerHTML = "";
+      $restaurantButton.setAttribute('disabled', '');
+      $spinner.classList.toggle("hidden");
+      spinner.classList.add("fa-spin");
+    },
+    stopSpin() {
+      $spinner.classList.toggle('hidden')
+      $restaurantButton.removeAttribute('disabled');
+    }
+  }
 }
 
 </script>

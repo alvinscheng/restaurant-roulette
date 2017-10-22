@@ -7,7 +7,8 @@ import * as mutations from './mutations'
 Vue.use(Vuex)
 
 const state = {
-  restaurant: {}
+  restaurant: {},
+  restaurantLoaded: true
 }
 
 const store = new Vuex.Store({
