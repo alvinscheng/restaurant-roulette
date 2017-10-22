@@ -9,7 +9,17 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
-      { test: /\.vue$/, loader: 'vue-loader' }
+      { test: /\.vue$/, loader: 'vue-loader' },
+      {
+        test: /\.(png|jp(e*)g|svg)$/,
+        use: [{
+            loader: 'url-loader',
+            options: {
+                limit: 8000,
+                name: '../assets/[hash]-[name].[ext]'
+            }
+        }]
+      }
     ]
   },
   resolve: {

@@ -26,12 +26,12 @@ export default {
         const { latitude, longitude } = position.coords
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
+            console.log(restaurant)
             this.$store.dispatch('updateRestaurant', { restaurant })
-            showResult(restaurant);
           })
           .catch((e) => {
-            showResult({
-              name: e, url: 'a/b'
+            this.$store.dispatch('updateRestaurant', {
+              restaurant: { name: e, url: 'a/b' }
             })
           })
       })
@@ -46,10 +46,6 @@ export default {
   }
 }
 
-const $r_image = document.querySelector('#r-image')
-const $top_image = document.querySelector('#top-image')
-const $top_anchor = document.querySelector('#top-anchor')
-const div = document.querySelector('#spinner');
 
 const startSpin = () => {
   $restaurant.innerHTML = "";
@@ -63,7 +59,6 @@ const showResult = (restaurant) => {
   // div.classList.toggle("hidden");
   // $restaurantButton.removeAttribute('disabled');
   // $restaurantButton.textContent = "Not satisfied? Try again!";
-  // console.log(restaurant)
 }
 
 </script>
