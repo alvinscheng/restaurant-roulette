@@ -48,18 +48,20 @@ export default {
 }
 
 const spinnerActions = () => {
+  const $restaurantName = document.querySelector('#result')
   const $restaurantButton = document.querySelector('#restaurant-btn')
   const $spinner = document.querySelector('#spinner')
   const spinner = document.querySelector('#spinner>i')
 
   return {
     startSpin() {
-      // $restaurant.innerHTML = "";
-      $restaurantButton.setAttribute('disabled', '');
-      $spinner.classList.toggle("hidden");
-      spinner.classList.add("fa-spin");
+      $restaurantName.classList.toggle("hidden")
+      $restaurantButton.setAttribute('disabled', '')
+      $spinner.classList.toggle("hidden")
+      spinner.classList.add("fa-spin")
     },
     stopSpin() {
+      $restaurantName.classList.toggle("hidden")
       $spinner.classList.toggle('hidden')
       $restaurantButton.removeAttribute('disabled');
     }

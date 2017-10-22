@@ -12279,18 +12279,20 @@ if (false) {(function () {
 });
 
 const spinnerActions = () => {
+  const $restaurantName = document.querySelector('#result');
   const $restaurantButton = document.querySelector('#restaurant-btn');
   const $spinner = document.querySelector('#spinner');
   const spinner = document.querySelector('#spinner>i');
 
   return {
     startSpin() {
-      // $restaurant.innerHTML = "";
+      $restaurantName.classList.toggle("hidden");
       $restaurantButton.setAttribute('disabled', '');
       $spinner.classList.toggle("hidden");
       spinner.classList.add("fa-spin");
     },
     stopSpin() {
+      $restaurantName.classList.toggle("hidden");
       $spinner.classList.toggle('hidden');
       $restaurantButton.removeAttribute('disabled');
     }
@@ -13044,7 +13046,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 
 const state = {
   restaurant: {},
-  restaurantLoaded: true
+  restaurantLoaded: false
 };
 
 const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({

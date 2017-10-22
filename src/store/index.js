@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   restaurant: {},
-  restaurantLoaded: true
+  restaurantLoaded: false
 }
 
 const store = new Vuex.Store({
