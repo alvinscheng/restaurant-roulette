@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
+    "dev": "webpack --config webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "nodemon index.js"
+    "watch:server": "nodemon index.js",
+    "watch:dev": "webpack --watch --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -23,9 +25,21 @@
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.15.4",
+    "vue": "^2.5.2",
+    "vuex": "^3.0.0",
     "yelp-fusion": "^1.0.3"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
+    "image-webpack-loader": "^3.4.2",
+    "nodemon": "^1.12.1",
+    "url-loader": "^0.6.2",
+    "vue-loader": "^13.3.0",
+    "vue-template-compiler": "^2.5.2",
+    "webpack": "^3.8.1"
   }
 }
