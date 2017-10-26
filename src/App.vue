@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 import Restaurant from './components/Restaurant.vue'
 import MainButton from './components/MainButton.vue'
 
@@ -26,12 +28,12 @@ export default {
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
             stopSpin()
-            this.$store.dispatch('loadRestaurant')
-            this.$store.dispatch('updateRestaurant', { restaurant })
+            this.loadRestaurant()
+            this.updateRestaurant({ restaurant })
           })
-          .catch((e) => {
-            this.$store.dispatch('loadRestaurant')
-            this.$store.dispatch('updateRestaurant', {
+          .catch(e => {
+            this.loadRestaurant()
+            this.updateRestaurant({
               restaurant: { name: e, url: 'a/b' }
             })
           })
@@ -43,7 +45,11 @@ export default {
         query += '&' + key + '=' + options[key]
       }
       return query
-    }
+    },
+    ...mapActions([
+      loadRestaurant,
+      updateRestaurant
+    ])
   }
 }
 

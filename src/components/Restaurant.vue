@@ -29,9 +29,11 @@ export default {
       type: Function
     }
   },
-  computed: mapGetters([
-    'restaurant'
-  ])
+  computed: {
+    ...mapGetters([
+      'restaurant'
+    ])
+  }
 }
 </script>
 

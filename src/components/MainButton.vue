@@ -1,12 +1,7 @@
 <template>
   <div class="text-center" id="restaurant-btn">
     <button class="btn btn-outline-dark" @click="() => getRestaurantByPosition({ limit: 50 })">
-      <span v-if="!restaurantLoaded">
-        We'll tell you where to eat!
-      </span>
-      <span v-else>
-        Not satisfied? Try again!
-      </span>
+      {{ buttonText }}
     </button>
   </div>
 </template>
@@ -20,8 +15,15 @@ export default {
       type: Function
     }
   },
-  computed: mapGetters([
-    'restaurantLoaded'
-  ])
+  computed: {
+    buttonText() {
+      return !this.restaurantLoaded
+        ? 'We\'ll tell you where to eat!'
+        : 'Not satisfied? Try again!'
+    },
+    ...mapGetters([
+      'restaurantLoaded'
+    ])
+  }
 }
 </script>
