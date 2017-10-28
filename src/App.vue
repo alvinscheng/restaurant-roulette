@@ -47,8 +47,8 @@ export default {
       return query
     },
     ...mapActions([
-      loadRestaurant,
-      updateRestaurant
+      'loadRestaurant',
+      'updateRestaurant'
     ])
   }
 }

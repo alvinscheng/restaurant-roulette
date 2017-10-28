@@ -12280,7 +12280,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
       }
       return query;
     }
-  }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])([loadRestaurant, updateRestaurant]))
+  }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(['loadRestaurant', 'updateRestaurant']))
 });
 
 const spinnerActions = () => {
