@@ -11918,7 +11918,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
   el: '#app',
   store: __WEBPACK_IMPORTED_MODULE_2__store__["a" /* default */],
-  render: h => h(__WEBPACK_IMPORTED_MODULE_1__App_vue__["a" /* default */])
+  render: function render(h) {
+    return h(__WEBPACK_IMPORTED_MODULE_1__App_vue__["a" /* default */]);
+  }
 });
 
 /***/ }),
@@ -12256,26 +12258,36 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     MainButton: __WEBPACK_IMPORTED_MODULE_2__components_MainButton_vue__["a" /* default */]
   },
   methods: _extends({
-    getRestaurantByPosition(options) {
-      const { startSpin, stopSpin } = spinnerActions();
+    getRestaurantByPosition: function getRestaurantByPosition(options) {
+      var _this = this;
+
+      var _spinnerActions = spinnerActions(),
+          startSpin = _spinnerActions.startSpin,
+          stopSpin = _spinnerActions.stopSpin;
+
       startSpin();
-      navigator.geolocation.getCurrentPosition(position => {
-        const { latitude, longitude } = position.coords;
-        fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json()).then(restaurant => {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var _position$coords = position.coords,
+            latitude = _position$coords.latitude,
+            longitude = _position$coords.longitude;
+
+        fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + _this.toQueryString(options), { method: 'GET' }).then(function (response) {
+          return response.json();
+        }).then(function (restaurant) {
           stopSpin();
-          this.loadRestaurant();
-          this.updateRestaurant({ restaurant });
-        }).catch(e => {
-          this.loadRestaurant();
-          this.updateRestaurant({
+          _this.loadRestaurant();
+          _this.updateRestaurant({ restaurant: restaurant });
+        }).catch(function (e) {
+          _this.loadRestaurant();
+          _this.updateRestaurant({
             restaurant: { name: e, url: 'a/b' }
           });
         });
       });
     },
-    toQueryString(options) {
-      let query = '';
-      for (let key in options) {
+    toQueryString: function toQueryString(options) {
+      var query = '';
+      for (var key in options) {
         query += '&' + key + '=' + options[key];
       }
       return query;
@@ -12283,20 +12295,20 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
   }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])(['loadRestaurant', 'updateRestaurant']))
 });
 
-const spinnerActions = () => {
-  const $restaurantName = document.querySelector('#result');
-  const $restaurantButton = document.querySelector('#restaurant-btn');
-  const $spinner = document.querySelector('#spinner');
-  const spinner = document.querySelector('#spinner>i');
+var spinnerActions = function spinnerActions() {
+  var $restaurantName = document.querySelector('#result');
+  var $restaurantButton = document.querySelector('#restaurant-btn');
+  var $spinner = document.querySelector('#spinner');
+  var spinner = document.querySelector('#spinner>i');
 
   return {
-    startSpin() {
+    startSpin: function startSpin() {
       $restaurantName.classList.toggle("hidden");
       $restaurantButton.setAttribute('disabled', '');
       $spinner.classList.toggle("hidden");
       spinner.classList.add("fa-spin");
     },
-    stopSpin() {
+    stopSpin: function stopSpin() {
       $restaurantName.classList.toggle("hidden");
       $spinner.classList.toggle('hidden');
       $restaurantButton.removeAttribute('disabled');
@@ -12939,7 +12951,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     }
   },
   computed: _extends({
-    buttonText() {
+    buttonText: function buttonText() {
       return !this.restaurantLoaded ? 'We\'ll tell you where to eat!' : 'Not satisfied? Try again!';
     }
   }, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapGetters */])(['restaurantLoaded']))
@@ -13048,13 +13060,13 @@ if (false) {
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
 
-const state = {
+var state = {
   restaurant: {},
   restaurantLoaded: false
 };
 
-const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state,
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: state,
   getters: __WEBPACK_IMPORTED_MODULE_2__getters__,
   actions: __WEBPACK_IMPORTED_MODULE_3__actions__,
   mutations: __WEBPACK_IMPORTED_MODULE_4__mutations__
@@ -13068,13 +13080,15 @@ const store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const restaurant = state => state.restaurant;
-/* harmony export (immutable) */ __webpack_exports__["restaurant"] = restaurant;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "restaurant", function() { return restaurant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "restaurantLoaded", function() { return restaurantLoaded; });
+var restaurant = function restaurant(state) {
+  return state.restaurant;
+};
 
-
-const restaurantLoaded = state => state.restaurantLoaded;
-/* harmony export (immutable) */ __webpack_exports__["restaurantLoaded"] = restaurantLoaded;
-
+var restaurantLoaded = function restaurantLoaded(state) {
+  return state.restaurantLoaded;
+};
 
 /***/ }),
 /* 25 */
@@ -13082,13 +13096,17 @@ const restaurantLoaded = state => state.restaurantLoaded;
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const updateRestaurant = ({ commit }, payload) => commit('UPDATE_RESTAURANT', payload);
-/* harmony export (immutable) */ __webpack_exports__["updateRestaurant"] = updateRestaurant;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateRestaurant", function() { return updateRestaurant; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadRestaurant", function() { return loadRestaurant; });
+var updateRestaurant = function updateRestaurant(_ref, payload) {
+  var commit = _ref.commit;
+  return commit('UPDATE_RESTAURANT', payload);
+};
 
-
-const loadRestaurant = ({ commit }) => commit('LOAD_RESTAURANT');
-/* harmony export (immutable) */ __webpack_exports__["loadRestaurant"] = loadRestaurant;
-
+var loadRestaurant = function loadRestaurant(_ref2) {
+  var commit = _ref2.commit;
+  return commit('LOAD_RESTAURANT');
+};
 
 /***/ }),
 /* 26 */
@@ -13096,17 +13114,15 @@ const loadRestaurant = ({ commit }) => commit('LOAD_RESTAURANT');
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-const UPDATE_RESTAURANT = (state, payload) => {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_RESTAURANT", function() { return UPDATE_RESTAURANT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LOAD_RESTAURANT", function() { return LOAD_RESTAURANT; });
+var UPDATE_RESTAURANT = function UPDATE_RESTAURANT(state, payload) {
   state.restaurant = Object.assign({}, payload.restaurant);
 };
-/* harmony export (immutable) */ __webpack_exports__["UPDATE_RESTAURANT"] = UPDATE_RESTAURANT;
 
-
-const LOAD_RESTAURANT = state => {
+var LOAD_RESTAURANT = function LOAD_RESTAURANT(state) {
   state.restaurantLoaded = true;
 };
-/* harmony export (immutable) */ __webpack_exports__["LOAD_RESTAURANT"] = LOAD_RESTAURANT;
-
 
 /***/ })
 /******/ ]);
