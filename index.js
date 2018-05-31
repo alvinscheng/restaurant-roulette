@@ -4,8 +4,7 @@ const path = require('path')
 const bodyParser = require('body-parser')
 const yelp = require('yelp-fusion')
 
-const clientId = process.env.CLIENT_ID
-const clientSecret = process.env.CLIENT_SECRET
+const apiKey = process.env.API_KEY
 
 const app = express()
 
@@ -21,13 +20,11 @@ app.get('/restaurant', (req, res) => {
   }
   searchRequest.term = (req.query.mode === 'party') ? 'beer' : 'food'
 
-  yelp.accessToken(clientId, clientSecret).then(response => {
-    const client = yelp.client(response.jsonBody.access_token)
+  const client = yelp.client(apiKey);
 
-    client.search(searchRequest).then(response => {
-      const random = Math.floor(Math.random() * response.jsonBody.businesses.length)
-      res.json(response.jsonBody.businesses[random])
-    })
+  client.search(searchRequest).then(response => {
+    const random = Math.floor(Math.random() * response.jsonBody.businesses.length)
+    res.json(response.jsonBody.businesses[random])
   }).catch(e => {
     res.sendStatus(404)
   })
