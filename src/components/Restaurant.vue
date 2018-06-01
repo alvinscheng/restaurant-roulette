@@ -12,7 +12,7 @@
       
       <div id="result">
         <div v-if="!isSpinning">
-          <a v-if="!restaurant.name">You<span @click="() => getRestaurantByPosition({ limit: 20, mode: 'party' })">'</span>re hungry:</a>
+          <a v-if="!restaurant.name"><span @click="() => getRestaurantByPosition({ limit: 20, mode: 'party' })"></span></a>
           <a v-else :href="restaurant.url" target="_blank">{{ restaurant.name }}</a>
         </div>
         <div v-else>

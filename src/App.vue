@@ -1,10 +1,49 @@
 <template>
   <div id="app">
-    <div class="text-center title">
-      <h1>Restaurant Roulette!</h1>
-    </div>
-    <Restaurant :get-restaurant-by-position="getRestaurantByPosition"></Restaurant>
-    <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
+    <v-app light>
+      <v-content>
+        <section>
+          <v-parallax src="../assets/tacos.jpeg">
+            <v-layout
+              column
+              align-center
+              justify-center
+              class="white--text"
+            >
+              <h1 class="white--text mb-2 display-1 text-xs-center">Restaurant Roulette</h1>
+            </v-layout>
+          </v-parallax>
+        </section>
+
+        <section>
+          <v-parallax src="../assets/wings.jpeg">
+            <v-layout column align-center justify-center>
+              <h3 class="white--text mb-2 display-1 text-xs-center">You're Hungry</h3>
+            </v-layout>
+          </v-parallax>
+        </section>
+
+        <section>
+          <v-parallax src="../assets/burger.jpg">
+            <v-layout column align-center justify-center>
+              <h3 class="white--text mb-2 display-1 text-xs-center">We'll Tell You Where to Eat!</h3>
+
+              <Restaurant :get-restaurant-by-position="getRestaurantByPosition"></Restaurant>
+            <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
+            </v-layout>
+          </v-parallax>
+        </section>
+
+        <!-- <section>
+          <v-container fluid>
+            <Restaurant :get-restaurant-by-position="getRestaurantByPosition"></Restaurant>
+            <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
+          </v-container>
+        </section> -->
+
+      </v-content>
+      <!-- <v-footer app></v-footer> -->
+    </v-app>
   </div>
 </template>
 
