@@ -9,8 +9,8 @@
       </a>
     </div>
     <div class="row justify-content-center spacer">
-      <div class="hidden" id="spinner">
-        <i class="result fa fa-circle-o-notch wobble-fix" aria-hidden="true"></i>
+      <div class="hidden result" id="spinner">
+        <i class="fas fa-utensils wobble-fix"></i>
       </div>
       <div id="result">
         <a v-if="!restaurant.name">You<span @click="() => getRestaurantByPosition({ limit: 20, mode: 'party' })">'</span>re hungry:</a>
