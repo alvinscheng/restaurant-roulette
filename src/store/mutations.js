@@ -5,3 +5,11 @@ export const UPDATE_RESTAURANT = (state, payload) => {
 export const LOAD_RESTAURANT = state => {
   state.restaurantLoaded = true
 }
+
+export const START_SPINNING = state => {
+  state.isSpinning = true
+}
+
+export const STOP_SPINNING = state => {
+  state.isSpinning = false
+}

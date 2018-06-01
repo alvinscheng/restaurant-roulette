@@ -9,12 +9,17 @@
       </a>
     </div>
     <div class="row justify-content-center spacer">
-      <div class="hidden result" id="spinner">
-        <i class="fas fa-utensils wobble-fix"></i>
-      </div>
+      
       <div id="result">
-        <a v-if="!restaurant.name">You<span @click="() => getRestaurantByPosition({ limit: 20, mode: 'party' })">'</span>re hungry:</a>
-        <a v-else :href="restaurant.url" target="_blank">{{ restaurant.name }}</a>
+        <div v-if="!isSpinning">
+          <a v-if="!restaurant.name">You<span @click="() => getRestaurantByPosition({ limit: 20, mode: 'party' })">'</span>re hungry:</a>
+          <a v-else :href="restaurant.url" target="_blank">{{ restaurant.name }}</a>
+        </div>
+        <div v-else>
+          <div id="spinner">
+            <i class="fas fa-utensils fa-spin wobble-fix"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -30,7 +35,8 @@ export default {
     }
   },
   computed: mapGetters([
-    'restaurant'
+    'restaurant',
+    'isSpinning'
   ])
 }
 </script>

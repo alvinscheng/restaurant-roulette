@@ -19,13 +19,13 @@ export default {
   },
   methods: {
     getRestaurantByPosition(options) {
-      const { startSpin, stopSpin } = spinnerActions()
-      startSpin()
+      this.$store.dispatch('startSpinning')
+
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
-            stopSpin()
+            this.$store.dispatch('stopSpinning')
             this.$store.dispatch('loadRestaurant')
             this.$store.dispatch('updateRestaurant', { restaurant })
           })
@@ -46,26 +46,4 @@ export default {
     }
   }
 }
-
-const spinnerActions = () => {
-  const $restaurantName = document.querySelector('#result')
-  const $restaurantButton = document.querySelector('#restaurant-btn')
-  const $spinner = document.querySelector('#spinner')
-  const spinner = document.querySelector('#spinner>i')
-
-  return {
-    startSpin() {
-      $restaurantName.classList.toggle("hidden")
-      $restaurantButton.setAttribute('disabled', '')
-      $spinner.classList.toggle("hidden")
-      spinner.classList.add("fa-spin")
-    },
-    stopSpin() {
-      $restaurantName.classList.toggle("hidden")
-      $spinner.classList.toggle('hidden')
-      $restaurantButton.removeAttribute('disabled');
-    }
-  }
-}
-
 </script>

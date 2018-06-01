@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 const state = {
   restaurant: {},
-  restaurantLoaded: false
+  restaurantLoaded: false,
+  isSpinning: false
 }
 
 const store = new Vuex.Store({
