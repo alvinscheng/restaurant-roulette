@@ -5,7 +5,7 @@
         <section>
           
           <!-- Randomize these images -->
-          <v-parallax src="../assets/tacos.jpeg">
+          <v-parallax :src="'../assets/' + randomImage">
             <v-layout
               column
               align-center
@@ -74,30 +74,7 @@
             </v-flex>
           </v-layout>
         </section>
-
-        <!-- <section>
-          <v-parallax src="../assets/wings.jpeg">
-            <v-layout column align-center justify-center>
-              <h3 class="white--text mb-2 display-1 text-xs-center">We'll Tell You Where to Eat!</h3>
-            </v-layout>
-          </v-parallax>
-        </section> -->
-
-        <!-- <section>
-          <v-layout
-            column
-            wrap
-            class="my-5"
-            align-center
-          >
-            <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
-            <Restaurant :get-restaurant-by-position="getRestaurantByPosition"></Restaurant>
-            
-          </v-layout>
-        </section> -->
-
       </v-content>
-      <!-- <v-footer app></v-footer> -->
     </v-app>
   </div>
 </template>
@@ -111,6 +88,18 @@ export default {
     Restaurant,
     MainButton
   },
+  data() {
+    return {
+      zip: null
+    }
+  },
+  computed: {
+    randomImage() {
+      const images = ['tacos.jpeg', 'burger.jpg', 'wings.jpeg']
+      const randomIndex = Math.floor(images.length * Math.random())
+      return images[randomIndex]
+    }
+  },
   methods: {
     getRestaurantByPosition(options) {
       this.$store.dispatch('startSpinning')
@@ -118,6 +107,22 @@ export default {
       navigator.geolocation.getCurrentPosition(position => {
         const { latitude, longitude } = position.coords
         fetch('/restaurant?latitude=' + latitude + '&longitude=' + longitude + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
+          .then(restaurant => {
+            this.$store.dispatch('stopSpinning')
+            this.$store.dispatch('loadRestaurant')
+            this.$store.dispatch('updateRestaurant', { restaurant })
+          })
+          .catch((e) => {
+            this.$store.dispatch('loadRestaurant')
+            this.$store.dispatch('updateRestaurant', {
+              restaurant: { name: e, url: 'a/b' }
+            })
+          })
+      }, err => {
+        if (!this.zip) {
+          this.zip = prompt('Enter your zip code')
+        }
+        fetch('/restaurant?location=' + this.zip + this.toQueryString(options), { method: 'GET' }).then(response => response.json())
           .then(restaurant => {
             this.$store.dispatch('stopSpinning')
             this.$store.dispatch('loadRestaurant')

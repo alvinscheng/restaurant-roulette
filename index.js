@@ -12,12 +12,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.json())
 
 app.get('/restaurant', (req, res) => {
-  const { latitude, longitude, limit } = req.query
-  const searchRequest = {
-    limit,
-    latitude,
-    longitude
-  }
+  const searchRequest = Object.assign({}, req.query)
+
   searchRequest.term = (req.query.mode === 'party') ? 'beer' : 'food'
 
   const client = yelp.client(apiKey);

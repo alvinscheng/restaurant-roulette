@@ -18,6 +18,7 @@
   color: #007bff;
   font-family: 'Slabo 27px', serif;
   font-size: 2em;
+  text-align: center;
 }
 .result:hover {
   color: #006aaa;
