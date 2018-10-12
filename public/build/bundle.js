@@ -33682,7 +33682,8 @@ var render = function() {
                             attrs: {
                               dark: "",
                               icon: "",
-                              href: "https://www.github.com/alvinscheng"
+                              href:
+                                "https://www.github.com/alvinscheng/restaurant-roulette"
                             }
                           },
                           [
