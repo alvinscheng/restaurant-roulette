@@ -2,9 +2,7 @@
   <div id="app">
     <v-app light>
       <v-content>
-        <section>
-          
-          <!-- Randomize these images -->
+        <section>   
           <v-parallax :src="'../assets/' + randomImage">
             <v-layout
               column
@@ -12,8 +10,8 @@
               justify-center
               class="white--text"
             >
-              <h1 class="white--text mb-2 display-1 text-xs-center">Restaurant Roulette</h1>
-              <span class="subheading">
+              <h1 class="white--text mb-2 display-3 font-weight-medium text-xs-center">Restaurant Roulette</h1>
+              <span class="subheading font-italic">
                 We'll Tell You Where to Eat!
               </span>
             </v-layout>
@@ -32,17 +30,9 @@
                 <v-layout row wrap align-center>
                   <v-flex xs12 md4>
                     <v-card class="elevation-0 transparent">
-                      <v-card-text class="text-xs-center">
-                        <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
-                      </v-card-text>
                       <v-card-title primary-title class="layout justify-center">
                         <MainButton :get-restaurant-by-position="getRestaurantByPosition"></MainButton>
                       </v-card-title>
-                      <v-card-text>
-                        Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                        Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
-                      </v-card-text>
                     </v-card>
                   </v-flex>
                   <v-flex xs12 md4>
@@ -54,9 +44,6 @@
                   </v-flex>
                   <v-flex xs12 md4>
                     <v-card class="elevation-0 transparent">
-                      <v-card-text class="text-xs-center">
-                        <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
-                      </v-card-text>
                       <v-card-title primary-title class="layout justify-center">
                         <div class="headline text-xs-center">About Restaurant Roulette</div>
                       </v-card-title>
@@ -73,6 +60,46 @@
               </v-container>
             </v-flex>
           </v-layout>
+        </section>
+
+        <section>
+          <v-footer
+            dark
+            height="auto"
+          >
+            <v-layout
+              justify-center
+              row
+              wrap
+            >
+              <v-btn
+                class="mx-3"
+                dark
+                icon
+                href="https://www.linkedin.com/in/alvin-cheng-69161313a"
+              >
+                <v-icon size="24px">fab fa-linkedin</v-icon>
+              </v-btn>
+
+              <v-btn
+                class="mx-3"
+                dark
+                icon
+                href="https://www.github.com/alvinscheng"
+              >
+                <v-icon size="24px">fab fa-github</v-icon>
+              </v-btn>
+
+              <v-btn
+                class="mx-3"
+                dark
+                icon
+                href="https://alvinsfastfoodchronicles.wordpress.com"
+              >
+                <v-icon size="24px">fab fa-wordpress</v-icon>
+              </v-btn>
+            </v-layout>
+          </v-footer>
         </section>
       </v-content>
     </v-app>

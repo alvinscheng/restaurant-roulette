@@ -1,6 +1,6 @@
 <template>
-  <div class="text-center" id="restaurant-btn" :disabled="isSpinning">
-    <v-btn large color="primary" @click="() => getRestaurantByPosition({ limit: 50 })">
+  <div class="text-center" id="restaurant-btn">
+    <v-btn large color="primary" :disabled="isSpinning" @click="() => getRestaurantByPosition({ limit: 50 })">
       <span v-if="!restaurantLoaded">
         Click Here
       </span>

@@ -14,8 +14,6 @@ app.use(bodyParser.json())
 app.get('/restaurant', (req, res) => {
   const searchRequest = Object.assign({}, req.query)
 
-  searchRequest.term = (req.query.mode === 'party') ? 'beer' : 'food'
-
   const client = yelp.client(apiKey);
 
   client.search(searchRequest).then(response => {
