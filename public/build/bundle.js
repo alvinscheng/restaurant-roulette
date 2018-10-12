@@ -13281,12 +13281,11 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "hidden", attrs: { id: "spinner" } }, [
-      _c("i", {
-        staticClass: "result fa fa-circle-o-notch wobble-fix",
-        attrs: { "aria-hidden": "true" }
-      })
-    ])
+    return _c(
+      "div",
+      { staticClass: "hidden result", attrs: { id: "spinner" } },
+      [_c("i", { staticClass: "fas fa-utensils wobble-fix" })]
+    )
   }
 ]
 render._withStripped = true

@@ -1,13 +1,13 @@
 <template>
   <div class="text-center" id="restaurant-btn">
-    <button class="btn btn-outline-dark" @click="() => getRestaurantByPosition({ limit: 50 })">
+    <v-btn large color="primary" :disabled="isSpinning" @click="() => getRestaurantByPosition({ limit: 50 })">
       <span v-if="!restaurantLoaded">
-        We'll tell you where to eat!
+        Click Here
       </span>
       <span v-else>
         Not satisfied? Try again!
       </span>
-    </button>
+    </v-btn>
   </div>
 </template>
 
@@ -21,7 +21,8 @@ export default {
     }
   },
   computed: mapGetters([
-    'restaurantLoaded'
+    'restaurantLoaded',
+    'isSpinning'
   ])
 }
 </script>
