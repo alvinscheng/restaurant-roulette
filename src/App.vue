@@ -85,7 +85,7 @@
                 class="mx-3"
                 dark
                 icon
-                href="https://www.github.com/alvinscheng"
+                href="https://www.github.com/alvinscheng/restaurant-roulette"
               >
                 <v-icon size="24px">fab fa-github</v-icon>
               </v-btn>
